@@ -1,21 +1,26 @@
 package com.accenture.tq.desafiotqvueloshoteles.model.entities.hotel;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.List;
 
-@Getter
-@Setter
-@Builder
+@Entity
+@Builder(toBuilder = true)
 @AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "Hotel")
+@Data
 public class Hotel {
-  private Long id;
-  private String hotelCode;
-  private String city;
-  private String country;
-  private String street;
-  private String zipCode;
-  private List<HotelRoom> rooms;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String hotelCode;
+    private String city;
+    private String country;
+    private String street;
+    private String zipCode;
+    @OneToMany
+    private List<HotelRoom> rooms;
+
 }
