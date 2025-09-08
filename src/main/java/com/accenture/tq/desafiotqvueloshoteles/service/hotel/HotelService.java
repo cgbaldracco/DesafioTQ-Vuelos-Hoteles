@@ -54,6 +54,7 @@ public class HotelService implements IHotelService {
   private HotelDTOOutput convertToDTO(Hotel hotel) {
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.typeMap(Hotel.class, HotelDTOOutput.class).addMappings(mapper -> {
+      mapper.map(Hotel::getHotelCode, HotelDTOOutput::setHotelCode);
       mapper.map(Hotel::getCity, HotelDTOOutput::setCity);
       mapper.map(Hotel::getCountry, HotelDTOOutput::setCountry);
       mapper.map(Hotel::getStreet, HotelDTOOutput::setStreet);
