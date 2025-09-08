@@ -1,4 +1,4 @@
-package com.accenture.tq.desafiotqvueloshoteles.model.exceptions;
+package com.accenture.tq.desafiotqvueloshoteles.exceptions;
 
 public class HotelNotFoundException extends RuntimeException {
   public HotelNotFoundException(String message) {

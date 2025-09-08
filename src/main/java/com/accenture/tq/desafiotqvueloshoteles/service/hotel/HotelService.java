@@ -2,7 +2,7 @@ package com.accenture.tq.desafiotqvueloshoteles.service.hotel;
 
 import com.accenture.tq.desafiotqvueloshoteles.dto.hotel.HotelDTOOutput;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.hotel.Hotel;
-import com.accenture.tq.desafiotqvueloshoteles.model.exceptions.HotelNotFoundException;
+import com.accenture.tq.desafiotqvueloshoteles.exceptions.HotelNotFoundException;
 import com.accenture.tq.desafiotqvueloshoteles.repository.HotelRepository;
 import com.accenture.tq.desafiotqvueloshoteles.repository.HotelBookingRepository;
 import org.modelmapper.ModelMapper;

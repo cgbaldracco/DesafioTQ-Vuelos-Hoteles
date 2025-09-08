@@ -1,6 +1,6 @@
 package com.accenture.tq.desafiotqvueloshoteles.controller;
 
-import com.accenture.tq.desafiotqvueloshoteles.model.exceptions.HotelNotFoundException;
+import com.accenture.tq.desafiotqvueloshoteles.exceptions.HotelNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
