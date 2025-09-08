@@ -2,13 +2,15 @@ package com.accenture.tq.desafiotqvueloshoteles.service.hotel;
 
 import com.accenture.tq.desafiotqvueloshoteles.dto.hotel.HotelDTOOutput;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.hotel.Hotel;
+import com.accenture.tq.desafiotqvueloshoteles.model.exceptions.HotelNotFoundException;
 import com.accenture.tq.desafiotqvueloshoteles.repository.HotelRepository;
-import com.accenture.tq.desafiotqvueloshoteles.repository.HotelReservationRepository;
+import com.accenture.tq.desafiotqvueloshoteles.repository.HotelBookingRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HotelService implements IHotelService {
@@ -16,7 +18,7 @@ public class HotelService implements IHotelService {
   private HotelRepository hotelRepository;
 
   @Autowired
-  private HotelReservationRepository hotelReservationRepository;
+  private HotelBookingRepository hotelBookingRepository;
 
   @Override
   public List<HotelDTOOutput> getHotels() {
@@ -29,16 +31,25 @@ public class HotelService implements IHotelService {
         .filter(hotel -> hotel.getCity().equalsIgnoreCase(city))
         .toList();
 
-    cityHotels = cityHotels.stream().filter(hotel -> isAvailableBetween(hotel, dateFrom, dateTo)).toList();
+    cityHotels = cityHotels.stream().filter(hotel -> isAvailableBetween(hotel.getId(), dateFrom, dateTo)).toList();
     return cityHotels.stream().map(this::convertToDTO).toList();
   }
 
-  private boolean isAvailableBetween(Hotel hotel, Date dateFrom, Date dateTo) {
-    return hotelReservationRepository.findByHotel(hotel).stream()
+  private boolean isAvailableBetween(Long hotelId, Date dateFrom, Date dateTo) {
+    int overlappingReservations = hotelBookingRepository.findByHotelId(hotelId).stream()
         .filter(reservation ->
             (dateFrom.before(reservation.getDateTo()) && dateTo.after(reservation.getDateFrom()))
-        ).toList().size() > hotel.getRooms().size();
+        ).toList().size();
+
+    Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
+    if (optionalHotel.isPresent()) {
+      Hotel hotel = optionalHotel.get();
+      return overlappingReservations < hotel.getRooms().size();
+    } else {
+      throw new HotelNotFoundException("Hotel not found in the database.");
+    }
   }
+
 
   private HotelDTOOutput convertToDTO(Hotel hotel) {
     ModelMapper modelMapper = new ModelMapper();

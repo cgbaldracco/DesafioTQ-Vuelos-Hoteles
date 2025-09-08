@@ -1,0 +1,19 @@
+package com.accenture.tq.desafiotqvueloshoteles.model.entities.booking;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import java.util.Date;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+public class People {
+  private String dni;
+  private String name;
+  private String lastName;
+  private Date birthDate;
+  private String mail;
+}

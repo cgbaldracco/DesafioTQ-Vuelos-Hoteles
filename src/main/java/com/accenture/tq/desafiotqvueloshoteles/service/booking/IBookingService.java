@@ -5,4 +5,6 @@ import com.accenture.tq.desafiotqvueloshoteles.dto.booking.BookingDetailsDTOOutp
 
 public interface IBookingService {
   BookingDetailsDTOOutput createBooking(String username, BookingDetailsDTOInput booking);
+
+  Long deleteBooking(Long bookingId);
 }

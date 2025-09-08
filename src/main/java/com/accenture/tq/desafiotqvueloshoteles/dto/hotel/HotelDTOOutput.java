@@ -10,6 +10,8 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 public class HotelDTOOutput {
+  private Long id;
+  private String hotelCode;
   private String city;
   private String country;
   private String street;
