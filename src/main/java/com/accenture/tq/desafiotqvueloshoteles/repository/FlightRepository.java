@@ -2,8 +2,15 @@ package com.accenture.tq.desafiotqvueloshoteles.repository;
 
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.flight.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
+    @Query("SELECT f FROM Flight f WHERE f.origin = :origin AND f.destination = :destination AND f.dateFrom >= :dateFrom AND f.dateTo <= :dateTo")
+    List<Flight> findAvailableFlights(@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo, @Param("origin") String origin, @Param("destination") String destination);
 }

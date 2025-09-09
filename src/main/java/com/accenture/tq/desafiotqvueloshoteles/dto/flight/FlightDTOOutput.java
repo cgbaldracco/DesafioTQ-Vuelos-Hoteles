@@ -30,6 +30,7 @@ public class FlightDTOOutput {
 
     public FlightDTOOutput() {}
 
+    //-- Los genere para los test Unitarios
     public void setFlightNumber(String flightNumber) { this.flightNumber = flightNumber; }
     public void setOrigin(String origin) { this.origin = origin; }
     public void setDestination(String destination) { this.destination = destination; }
@@ -41,4 +42,28 @@ public class FlightDTOOutput {
     public String getFlightNumber() {
         return flightNumber;
     }
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public String getSeatType() {
+		return seatType;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public LocalDate getDateFrom() {
+		return dateFrom;
+	}
+
+	public LocalDate getDateTo() {
+		return dateTo;
+	}
 }

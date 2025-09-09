@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 @Service
 public class FlightService implements IFlightService {
@@ -17,6 +19,15 @@ public class FlightService implements IFlightService {
     @Override
     public List<FlightDTOOutput> getAllFlights() {
         return flightRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FlightDTOOutput> getAvailableFlights(String dateFrom, String dateTo, String origin, String destination) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate from = LocalDate.parse(dateFrom, formatter);
+        LocalDate to = LocalDate.parse(dateTo, formatter);
+        List<Flight> flights = flightRepository.findAvailableFlights(from, to, origin, destination);
+        return flights.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     private FlightDTOOutput toDTO(Flight flight) {
