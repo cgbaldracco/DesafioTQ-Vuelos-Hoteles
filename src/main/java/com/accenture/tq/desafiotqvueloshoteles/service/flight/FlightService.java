@@ -21,6 +21,15 @@ public class FlightService implements IFlightService {
         return flightRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
+    /**
+     * Metodo que devuelve todos los vuelos disponibles dentro del rango de fechas recibido
+     * y que tengan de origen y destino las ciudades tambien recibidas.
+     * @param dateFrom
+     * @param dateTo
+     * @param origin
+     * @param destination
+     * @return Lista de vuelos disponibles.
+     */
     @Override
     public List<FlightDTOOutput> getAvailableFlights(String dateFrom, String dateTo, String origin, String destination) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

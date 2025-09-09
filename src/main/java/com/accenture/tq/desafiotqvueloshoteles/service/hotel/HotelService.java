@@ -25,6 +25,14 @@ public class HotelService implements IHotelService {
     return hotelRepository.findAll().stream().map(this::convertToDTO).toList();
   }
 
+  /**
+   * Recupera del repositorio los hoteles de la ciudad pasada por parametro. Luego
+   * determina con cuales quedarse utilizando el metodo isAvailableBetween.
+   * @param dateFrom
+   * @param dateTo
+   * @param city
+   * @return Lista de hoteles de la ciudad disponibles dentro de las fechas.
+   */
   @Override
   public List<HotelDTOOutput> getAvailableHotels(Date dateFrom, Date dateTo, String city) {
     List<Hotel> cityHotels = hotelRepository.findAll().stream()
@@ -35,6 +43,16 @@ public class HotelService implements IHotelService {
     return cityHotels.stream().map(this::convertToDTO).toList();
   }
 
+  /**
+   * Determina si el hotel pasado por parametro tiene disponible alguna habitacion para su reserva.
+   * Para ello recupera todas las reservas del hotel y filtra las que se encuentren dentro
+   * del rango de fechas solicitado, y luego compara esa cantidad con la cantidad de cuartos
+   * del hotel.
+   * @param hotelId
+   * @param dateFrom
+   * @param dateTo
+   * @return si el hotel esta disponible o no
+   */
   private boolean isAvailableBetween(Long hotelId, Date dateFrom, Date dateTo) {
     int overlappingReservations = hotelBookingRepository.findByHotelId(hotelId).stream()
         .filter(reservation ->
@@ -50,7 +68,11 @@ public class HotelService implements IHotelService {
     }
   }
 
-
+  /**
+   * Genera un DTO de output a partir de la entidad Hotel pasada por parametro.
+   * @param hotel
+   * @return
+   */
   private HotelDTOOutput convertToDTO(Hotel hotel) {
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.typeMap(Hotel.class, HotelDTOOutput.class).addMappings(mapper -> {
