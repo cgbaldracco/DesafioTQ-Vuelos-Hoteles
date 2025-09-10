@@ -22,6 +22,13 @@ public class FlightReservationService implements IFlightReservationService {
   private final FlightSeatPriceCalculator priceCalculator = new FlightSeatPriceCalculator();
   private final ModelMapper modelMapper = new ModelMapper();
 
+  /**
+   * Metodo utilizado para crear una reserva de vuelo, guardarla en el repositorio y
+   * devolver los detalles de la reserva.
+   * @param username
+   * @param flightReservationInput
+   * @return Detalles de la reserva de vuelo
+   */
   @Override
   public FlightReservationDetailsDTO createFlightReservation(String username,
                                                              FlightReservationInputDTO flightReservationInput) {
@@ -31,6 +38,12 @@ public class FlightReservationService implements IFlightReservationService {
     return mapToDetailsDTO(flightReservation);
   }
 
+  /**
+   * Metodo que transforma los datos enviados del front a una reserva de vuelo.
+   * @param username
+   * @param flightReservationInput
+   * @return nueva reserva de vuelo
+   */
   private FlightReservation createFlightReservationFromDTO(String username,
                                                            FlightReservationInputDTO flightReservationInput) {
     FlightReservation flightReservation = new FlightReservation();
@@ -51,6 +64,12 @@ public class FlightReservationService implements IFlightReservationService {
     return flightReservation;
   }
 
+  /**
+   * Metodo que mapea una reserva de vuelo a un DTO de detalles de reserva de vuelo para ser devueltos
+   * como informacion.
+   * @param flightReservation
+   * @return Detalles de la reserva de vuelo
+   */
   private FlightReservationDetailsDTO mapToDetailsDTO(FlightReservation flightReservation) {
     FlightReservationDetailsDTO detailsDTO = new FlightReservationDetailsDTO();
     detailsDTO.setUserName(flightReservation.getUserName());
