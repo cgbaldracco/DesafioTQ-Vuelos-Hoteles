@@ -17,13 +17,7 @@ public class HotelController {
   @Autowired
   private HotelService hotelService;
 
-  @GetMapping("/list")
-  public ResponseEntity<List<HotelDTOOutput>> getHotels() {
-    List<HotelDTOOutput> hotels = hotelService.getHotels();
-    return ResponseEntity.ok(hotels);
-  }
-
-  @GetMapping("/available")
+  @GetMapping
   public ResponseEntity<List<HotelDTOOutput>> getAvailableHotels(
       @RequestParam(required = false) Date dateFrom,
       @RequestParam(required = false) Date dateTo,
