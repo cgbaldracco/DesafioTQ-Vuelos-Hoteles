@@ -1,10 +1,10 @@
 package com.accenture.tq.desafiotqvueloshoteles.service.booking;
 
-import com.accenture.tq.desafiotqvueloshoteles.dto.booking.BookingDetailsDTOInput;
-import com.accenture.tq.desafiotqvueloshoteles.dto.booking.BookingDetailsDTOOutput;
+import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOInput;
+import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOOutput;
 
 public interface IBookingService {
-  BookingDetailsDTOOutput createBooking(String username, BookingDetailsDTOInput booking);
+  HotelBookingDTOOutput createBooking(HotelBookingDTOInput booking);
 
   Long deleteBooking(Long bookingId);
 }

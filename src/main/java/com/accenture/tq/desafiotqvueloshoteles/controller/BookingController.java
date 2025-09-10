@@ -1,7 +1,7 @@
 package com.accenture.tq.desafiotqvueloshoteles.controller;
 
-import com.accenture.tq.desafiotqvueloshoteles.dto.booking.BookingDetailsDTOInput;
-import com.accenture.tq.desafiotqvueloshoteles.dto.booking.BookingDetailsDTOOutput;
+import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOInput;
+import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOOutput;
 import com.accenture.tq.desafiotqvueloshoteles.service.booking.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,9 @@ public class BookingController {
   @Autowired
   private BookingService bookingService;
 
-  @PostMapping("/api/v1/bookings")
-  public ResponseEntity<BookingDetailsDTOOutput> createBooking(@RequestBody String username,
-                                                               @RequestBody BookingDetailsDTOInput booking) {
-    BookingDetailsDTOOutput createdBooking = bookingService.createBooking(username, booking);
+  @PostMapping("/api/v1/booking")
+  public ResponseEntity<HotelBookingDTOOutput> createBooking(@RequestBody HotelBookingDTOInput booking) {
+    HotelBookingDTOOutput createdBooking = bookingService.createBooking(booking);
     return ResponseEntity.ok(createdBooking);
   }
 

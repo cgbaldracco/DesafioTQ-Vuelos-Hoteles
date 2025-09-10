@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "flights")
+@Table(name = "flight")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,20 +21,18 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private String flightNumber;
+    
     private String origin;
+    
     private String destination;
+    
     private String seatType;
+    
     private Double amount;
+    
     private LocalDate dateFrom;
+    
     private LocalDate dateTo;
-
-    public Long getId() { return id; }
-    public String getFlightNumber() { return flightNumber; }
-    public String getOrigin() { return origin; }
-    public String getDestination() { return destination; }
-    public String getSeatType() { return seatType; }
-    public Double getAmount() { return amount; }
-    public LocalDate getDateFrom() { return dateFrom; }
-    public LocalDate getDateTo() { return dateTo; }
 }

@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
+import jakarta.persistence.Embeddable;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
+@Embeddable
 public class People {
   private String dni;
   private String name;

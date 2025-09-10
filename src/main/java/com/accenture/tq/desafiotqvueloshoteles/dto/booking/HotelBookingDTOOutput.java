@@ -13,11 +13,15 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class HotelBookingDTOOutput {
-  private Date dateFrom;
-  private Date dateTo;
-  private String destination;
-  private String hotelCode;
-  private int peopleAmount;
-  private String roomType;
-  private List<PeopleDTO> people;
+ 
+	private Date dateFrom;
+	private Date dateTo;
+	private String destination;
+	private String hotelCode;
+	private int peopleAmount;
+	private String roomType;
+	private List<PeopleDTO> people;
+	private double totalPrice;
+	private String userName;
+	private StatusCodeDTO statusCode;
 }
