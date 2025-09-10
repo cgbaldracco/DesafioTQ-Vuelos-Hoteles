@@ -26,19 +26,9 @@ public class FlightReservationService implements IFlightReservationService {
   public FlightReservationDetailsDTO createFlightReservation(String username,
                                                              FlightReservationInputDTO flightReservationInput) {
     FlightReservation flightReservation = createFlightReservationFromDTO(username, flightReservationInput);
+    flightReservationRepository.save(flightReservation);
 
-    FlightReservationOutputDTO flightReservationOutput = new ModelMapper()
-        .map(flightReservation, FlightReservationOutputDTO.class);
-
-    FlightReservationDetailsDTO outputDTO = new FlightReservationDetailsDTO();
-    outputDTO.setUserName(username);
-    outputDTO.setAmount(flightReservation.getTotalAmount());
-    outputDTO.setInterest(priceCalculator.calculateFlightInterest(flightReservation.getSeatType(),
-        flightReservation.getSeats()));
-    outputDTO.setTotal(flightReservation.getTotalAmount().add(outputDTO.getInterest()));
-    outputDTO.setFlightReservation(flightReservationOutput);
-
-    return outputDTO;
+    return mapToDetailsDTO(flightReservation);
   }
 
   private FlightReservation createFlightReservationFromDTO(String username,
@@ -58,8 +48,17 @@ public class FlightReservationService implements IFlightReservationService {
         .stream().map(peopleDTO -> modelMapper.map(peopleDTO, People.class)).toList());
     flightReservation.setPaymentMethod(modelMapper.map(flightReservationInput.getPaymentMethod(), PaymentMethod.class));
 
-    flightReservationRepository.save(flightReservation);
-
     return flightReservation;
+  }
+
+  private FlightReservationDetailsDTO mapToDetailsDTO(FlightReservation flightReservation) {
+    FlightReservationDetailsDTO detailsDTO = new FlightReservationDetailsDTO();
+    detailsDTO.setUserName(flightReservation.getUserName());
+    detailsDTO.setAmount(flightReservation.getTotalAmount());
+    detailsDTO.setInterest(priceCalculator.calculateFlightInterest(flightReservation.getSeatType(),
+        flightReservation.getSeats()));
+    detailsDTO.setTotal(detailsDTO.getAmount().add(detailsDTO.getInterest()));
+    detailsDTO.setFlightReservation(modelMapper.map(flightReservation, FlightReservationOutputDTO.class));
+    return detailsDTO;
   }
 }
