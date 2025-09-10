@@ -2,9 +2,9 @@ package com.accenture.tq.desafiotqvueloshoteles.service.helper;
 
 import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOInput;
 import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOOutput;
-import com.accenture.tq.desafiotqvueloshoteles.dto.booking.StatusCodeDTO;
+import com.accenture.tq.desafiotqvueloshoteles.dto.general.StatusCodeDTO;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.booking.HotelBooking;
-import com.accenture.tq.desafiotqvueloshoteles.model.entities.booking.People;
+import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;

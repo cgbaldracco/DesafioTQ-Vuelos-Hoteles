@@ -1,22 +1,23 @@
 package com.accenture.tq.desafiotqvueloshoteles.model.entities.general;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.util.Date;
+import jakarta.persistence.Embeddable;
 
-@Data
-@Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Embeddable
 public class People {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
   private String dni;
   private String name;
-  private String lastname;
+  private String lastName;
   private Date birthDate;
   private String mail;
 }
-

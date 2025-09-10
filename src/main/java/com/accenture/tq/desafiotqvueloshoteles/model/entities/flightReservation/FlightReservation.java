@@ -1,7 +1,6 @@
 package com.accenture.tq.desafiotqvueloshoteles.model.entities.flightReservation;
 
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.PaymentMethod;
-import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigInteger;

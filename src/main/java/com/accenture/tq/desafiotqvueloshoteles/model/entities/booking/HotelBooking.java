@@ -1,5 +1,6 @@
 package com.accenture.tq.desafiotqvueloshoteles.model.entities.booking;
 
+import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -5,7 +5,6 @@ import com.accenture.tq.desafiotqvueloshoteles.dto.flightReservation.FlightReser
 import com.accenture.tq.desafiotqvueloshoteles.dto.flightReservation.FlightReservationOutputDTO;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.flightReservation.FlightReservation;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.PaymentMethod;
-import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.utils.DateParser;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.utils.FlightSeatPriceCalculator;
 import org.modelmapper.ModelMapper;
