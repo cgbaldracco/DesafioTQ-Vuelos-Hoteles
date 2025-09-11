@@ -16,6 +16,10 @@ public class FlightService implements IFlightService {
     @Autowired
     private FlightRepository flightRepository;
 
+    /**
+	 * Metodo que devuelve todos los vuelos disponibles.
+	 * @return Lista de vuelos disponibles.
+	 */
     @Override
     public List<FlightDTOOutput> getAllFlights() {
         return flightRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
@@ -32,6 +36,9 @@ public class FlightService implements IFlightService {
      */
     @Override
     public List<FlightDTOOutput> getAvailableFlights(String dateFrom, String dateTo, String origin, String destination) {
+    	if(dateFrom == null || dateTo == null || origin == null || destination == null) {
+			return getAllFlights();
+		}
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate from = LocalDate.parse(dateFrom, formatter);
         LocalDate to = LocalDate.parse(dateTo, formatter);
@@ -39,6 +46,11 @@ public class FlightService implements IFlightService {
         return flights.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
+    /**
+	 * Metodo que convierte una entidad Flight a su DTO correspondiente.
+	 * @param flight
+	 * @return FlightDTOOutput
+	 */
     private FlightDTOOutput toDTO(Flight flight) {
         FlightDTOOutput dto = new FlightDTOOutput();
         dto.setFlightNumber(flight.getFlightNumber());

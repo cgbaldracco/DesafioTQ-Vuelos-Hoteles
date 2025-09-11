@@ -3,6 +3,7 @@ package com.accenture.tq.desafiotqvueloshoteles.dto.general;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PeopleDTO {
   private String dni;
   private String name;

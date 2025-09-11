@@ -1,25 +1,24 @@
-package com.accenture.tq.desafiotqvueloshoteles.dto.booking;
+package com.accenture.tq.desafiotqvueloshoteles.dto.flightReservation;
 
 import com.accenture.tq.desafiotqvueloshoteles.dto.general.PaymentMethodDTO;
 import com.accenture.tq.desafiotqvueloshoteles.dto.general.PeopleDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Date;
 import java.util.List;
 
+@Data
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-public class BookingDetailsDTOInput {
-  private Date dateFrom;
-  private Date dateTo;
-  private String userName;
+public class FlightReservationInputDTO {
+  private String dateFrom;
+  private String dateTo;
+  private String origin;
   private String destination;
-  private int peopleAmount;
-  private String roomType;
+  private String flightNumber;
+  private Integer seats;
+  private String seatType;
   private List<PeopleDTO> people;
   private PaymentMethodDTO paymentMethod;
+  private String username;
 }

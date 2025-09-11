@@ -1,8 +1,9 @@
-package com.accenture.tq.desafiotqvueloshoteles.model.entities.booking;
+package com.accenture.tq.desafiotqvueloshoteles.model.entities.general;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 import jakarta.persistence.Embeddable;
@@ -11,6 +12,7 @@ import jakarta.persistence.Embeddable;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class People {
   private String dni;

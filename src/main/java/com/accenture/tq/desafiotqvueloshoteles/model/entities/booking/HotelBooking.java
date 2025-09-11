@@ -1,9 +1,11 @@
 package com.accenture.tq.desafiotqvueloshoteles.model.entities.booking;
 
+import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class HotelBooking {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

@@ -28,6 +28,7 @@ public class HotelService implements IHotelService {
   /**
    * Recupera del repositorio los hoteles de la ciudad pasada por parametro. Luego
    * determina con cuales quedarse utilizando el metodo isAvailableBetween.
+   * Si alguno de los parametros es nulo, ignora los filtros y devuelve todos los hoteles.
    * @param dateFrom
    * @param dateTo
    * @param city
@@ -35,6 +36,10 @@ public class HotelService implements IHotelService {
    */
   @Override
   public List<HotelDTOOutput> getAvailableHotels(Date dateFrom, Date dateTo, String city) {
+    if(dateFrom == null || dateTo == null || city == null) {
+      return getHotels();
+    }
+
     List<Hotel> cityHotels = hotelRepository.findAll().stream()
         .filter(hotel -> hotel.getCity().equalsIgnoreCase(city))
         .toList();
@@ -54,15 +59,10 @@ public class HotelService implements IHotelService {
    * @return si el hotel esta disponible o no
    */
   private boolean isAvailableBetween(Long hotelId, Date dateFrom, Date dateTo) {
-    int overlappingReservations = hotelBookingRepository.findByHotelId(hotelId).stream()
-        .filter(reservation ->
-            (dateFrom.before(reservation.getDateTo()) && dateTo.after(reservation.getDateFrom()))
-        ).toList().size();
-
     Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
     if (optionalHotel.isPresent()) {
       Hotel hotel = optionalHotel.get();
-      return overlappingReservations < hotel.getRooms().size();
+      return !hotel.getIsReserved() && hotel.getAvailableFrom().before(dateFrom) && hotel.getAvailableTo().after(dateTo);
     } else {
       throw new HotelNotFoundException("Hotel not found in the database.");
     }
@@ -75,14 +75,6 @@ public class HotelService implements IHotelService {
    */
   private HotelDTOOutput convertToDTO(Hotel hotel) {
     ModelMapper modelMapper = new ModelMapper();
-    modelMapper.typeMap(Hotel.class, HotelDTOOutput.class).addMappings(mapper -> {
-      mapper.map(Hotel::getHotelCode, HotelDTOOutput::setHotelCode);
-      mapper.map(Hotel::getCity, HotelDTOOutput::setCity);
-      mapper.map(Hotel::getCountry, HotelDTOOutput::setCountry);
-      mapper.map(Hotel::getStreet, HotelDTOOutput::setStreet);
-      mapper.map(Hotel::getZipCode, HotelDTOOutput::setZipCode);
-    });
-
     return modelMapper.map(hotel, HotelDTOOutput.class);
   }
 }
