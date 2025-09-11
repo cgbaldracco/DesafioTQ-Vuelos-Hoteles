@@ -15,6 +15,7 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String hotelCode;
     private String city;
     private String country;
     private String street;
@@ -23,4 +24,3 @@ public class Hotel {
     private List<HotelRoom> rooms;
 
 }
-

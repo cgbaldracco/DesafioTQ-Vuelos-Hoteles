@@ -13,7 +13,8 @@ import java.util.List;
 @Setter
 @Builder
 @AllArgsConstructor
-public class BookingDetailsDTOInput {
+public class HotelBookingDTOInput {
+	
   private Date dateFrom;
   private Date dateTo;
   private String userName;
@@ -22,4 +23,11 @@ public class BookingDetailsDTOInput {
   private String roomType;
   private List<PeopleDTO> people;
   private PaymentMethodDTO paymentMethod;
+
+  public HotelBookingDTOInput() {}
+
+  public Date getDateFrom() { return dateFrom; }
+  public Date getDateTo() { return dateTo; }
+  public int getPeopleAmount() { return peopleAmount; }
+  public String getRoomType() { return roomType; }
 }
