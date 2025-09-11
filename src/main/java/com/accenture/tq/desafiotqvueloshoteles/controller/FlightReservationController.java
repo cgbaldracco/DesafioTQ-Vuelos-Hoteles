@@ -17,11 +17,13 @@ public class FlightReservationController {
   private FlightReservationService flightReservationService;
 
   @PostMapping
-  public ResponseEntity<FlightReservationDetailsDTO>
-                            createFlightReservation(@RequestBody String username,
-                                                    @RequestBody FlightReservationInputDTO flightReservation) {
-    FlightReservationDetailsDTO createdFlightReservation = flightReservationService.
-        createFlightReservation(username, flightReservation);
+  public ResponseEntity<FlightReservationDetailsDTO> createFlightReservation(
+      @RequestBody FlightReservationInputDTO flightReservation) {
+    String username = flightReservation.getUsername();
+    if (username == null || username.trim().isEmpty()) {
+      return ResponseEntity.badRequest().build();
+    }
+    FlightReservationDetailsDTO createdFlightReservation = flightReservationService.createFlightReservation(username, flightReservation);
     return ResponseEntity.ok(createdFlightReservation);
   }
 }

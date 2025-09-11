@@ -3,8 +3,10 @@ package com.accenture.tq.desafiotqvueloshoteles.service.helper;
 import com.accenture.tq.desafiotqvueloshoteles.dto.flightReservation.FlightReservationDetailsDTO;
 import com.accenture.tq.desafiotqvueloshoteles.dto.flightReservation.FlightReservationInputDTO;
 import com.accenture.tq.desafiotqvueloshoteles.dto.flightReservation.FlightReservationOutputDTO;
+import com.accenture.tq.desafiotqvueloshoteles.dto.general.StatusCodeDTO;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.flightReservation.FlightReservation;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.PaymentMethod;
+import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.utils.DateParser;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.utils.FlightSeatPriceCalculator;
 import org.modelmapper.ModelMapper;
@@ -54,6 +56,7 @@ public class FlightReservationHelper {
         flightReservation.getSeats()));
     detailsDTO.setTotal(detailsDTO.getAmount().add(detailsDTO.getInterest()));
     detailsDTO.setFlightReservation(modelMapper.map(flightReservation, FlightReservationOutputDTO.class));
+    detailsDTO.setStatusCode(StatusCodeDTO.builder().code(200).message("La reserva se ha realizado correctamente").build());
     return detailsDTO;
   }
 }
