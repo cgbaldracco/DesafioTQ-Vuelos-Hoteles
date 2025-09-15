@@ -4,7 +4,6 @@ import com.accenture.tq.desafiotqvueloshoteles.dto.hotel.HotelDTOOutput;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.hotel.Hotel;
 import com.accenture.tq.desafiotqvueloshoteles.exceptions.HotelNotFoundException;
 import com.accenture.tq.desafiotqvueloshoteles.repository.HotelRepository;
-import com.accenture.tq.desafiotqvueloshoteles.repository.HotelBookingRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,6 @@ import java.util.Optional;
 public class HotelService implements IHotelService {
   @Autowired
   private HotelRepository hotelRepository;
-
-  @Autowired
-  private HotelBookingRepository hotelBookingRepository;
 
   @Override
   public List<HotelDTOOutput> getHotels() {
