@@ -13,4 +13,8 @@ import java.util.List;
 public interface FlightRepository extends JpaRepository<Flight, Long> {
     @Query("SELECT f FROM Flight f WHERE f.origin = :origin AND f.destination = :destination AND f.dateFrom >= :dateFrom AND f.dateTo <= :dateTo")
     List<Flight> findAvailableFlights(@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo, @Param("origin") String origin, @Param("destination") String destination);
+
+	boolean existsByOrigin(String origin);
+	
+	boolean existsByDestination(String destination);
 }

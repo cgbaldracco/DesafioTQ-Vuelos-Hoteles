@@ -36,13 +36,32 @@ public class FlightService implements IFlightService {
      */
     @Override
     public List<FlightDTOOutput> getAvailableFlights(String dateFrom, String dateTo, String origin, String destination) {
-    	if(dateFrom == null || dateTo == null || origin == null || destination == null) {
-			return getAllFlights();
-		}
+        if(dateFrom == null || dateTo == null || origin == null || destination == null) {
+            return getAllFlights();
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate from = LocalDate.parse(dateFrom, formatter);
-        LocalDate to = LocalDate.parse(dateTo, formatter);
+        LocalDate from;
+        LocalDate to;
+        try {
+            from = LocalDate.parse(dateFrom, formatter);
+            to = LocalDate.parse(dateTo, formatter);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Formato de fecha debe ser DD/MM/AAAA");
+        }
+        if (from.isAfter(to)) {
+            throw new IllegalArgumentException("La fecha de ida debe ser menor a la de vuelta.");
+        }
+        
+        if (!flightRepository.existsByOrigin(origin)) {
+            throw new IllegalArgumentException("El origen elegido no existe.");
+        }
+        if (!flightRepository.existsByDestination(destination)) {
+            throw new IllegalArgumentException("El destino elegido no existe.");
+        }
         List<Flight> flights = flightRepository.findAvailableFlights(from, to, origin, destination);
+        if (flights.isEmpty()) {
+            throw new IllegalArgumentException("No hay vuelos disponibles");
+        }
         return flights.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
