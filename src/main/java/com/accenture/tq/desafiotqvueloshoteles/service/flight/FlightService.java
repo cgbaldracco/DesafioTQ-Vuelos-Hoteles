@@ -22,6 +22,10 @@ public class FlightService implements IFlightService {
 	 */
     @Override
     public List<FlightDTOOutput> getAllFlights() {
+    	List<FlightDTOOutput> result = flightRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+    	if(result.isEmpty()) {
+    		throw new IllegalArgumentException("No hay vuelos disponibles");
+    	}
         return flightRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
 

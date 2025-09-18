@@ -103,5 +103,23 @@ class FlightServiceTest {
         assertTrue(ex.getMessage().contains("destino elegido no existe"));
     }
     
+    @Test
+    void testDevuelveVuelos() {
+    	when(flightRepository.findAll()).thenReturn(Arrays.asList(flight));
+
+		List<FlightDTOOutput> result = flightService.getAllFlights();
+		assertEquals(1, result.size());
+		assertEquals("FL123", result.get(0).getFlightNumber());
+    }
+    
+    @Test
+    void testNoDevuelveVuelos() {
+    	when(flightRepository.findAll()).thenReturn(Collections.emptyList());
+
+		Exception ex = assertThrows(IllegalArgumentException.class, () ->
+			flightService.getAllFlights()
+		);
+		assertTrue(ex.getMessage().contains("No hay vuelos disponibles"));
+    }
   
 }
