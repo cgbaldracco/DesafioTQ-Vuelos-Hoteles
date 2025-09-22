@@ -2,14 +2,9 @@ package com.accenture.tq.desafiotqvueloshoteles.service.hotels;
 
 import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOInput;
 import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOOutput;
-import com.accenture.tq.desafiotqvueloshoteles.dto.flight.FlightDTOOutput;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.booking.HotelBooking;
-import com.accenture.tq.desafiotqvueloshoteles.model.entities.flight.Flight;
-import com.accenture.tq.desafiotqvueloshoteles.repository.FlightRepository;
 import com.accenture.tq.desafiotqvueloshoteles.repository.HotelBookingRepository;
 import com.accenture.tq.desafiotqvueloshoteles.service.booking.BookingService;
-import com.accenture.tq.desafiotqvueloshoteles.service.booking.IBookingService;
-import com.accenture.tq.desafiotqvueloshoteles.service.flight.FlightService;
 import com.accenture.tq.desafiotqvueloshoteles.service.helper.HotelBookingHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +21,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class HotelServiceTest {
+class BookingServiceTest {
 	
     @Mock
     private HotelBookingRepository hotelBookingRepository;

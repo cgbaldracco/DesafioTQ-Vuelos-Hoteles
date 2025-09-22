@@ -50,7 +50,7 @@ public class HotelService implements IHotelService {
         .toList();
 
     if(cityHotels.isEmpty()) {
-      throw new HotelNotFoundException("El destino elegido no existe.");
+      throw new HotelNotFoundException("El estino elegido no existe.");
     }
 
     cityHotels = cityHotels.stream().filter(hotel -> hotelHelper
