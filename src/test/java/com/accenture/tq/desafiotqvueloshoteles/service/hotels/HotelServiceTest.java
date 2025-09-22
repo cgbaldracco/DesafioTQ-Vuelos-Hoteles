@@ -7,12 +7,15 @@ import com.accenture.tq.desafiotqvueloshoteles.service.hotel.HotelService;
 import com.accenture.tq.desafiotqvueloshoteles.utils.HotelCustomFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class HotelServiceTest {
 
   @Mock
