@@ -5,10 +5,13 @@ import com.accenture.tq.desafiotqvueloshoteles.dto.booking.HotelBookingDTOOutput
 import com.accenture.tq.desafiotqvueloshoteles.dto.general.StatusCodeDTO;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.booking.HotelBooking;
 import com.accenture.tq.desafiotqvueloshoteles.model.entities.general.People;
+import org.springframework.stereotype.Component;
+
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class HotelBookingHelper {
   /**
    * Metodo que calcula el importe total de la reserva a partir del tipo de habitacion,

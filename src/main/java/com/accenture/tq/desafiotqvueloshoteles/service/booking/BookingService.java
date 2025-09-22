@@ -14,8 +14,8 @@ public class BookingService implements IBookingService {
 	
 	@Autowired
 	private HotelBookingRepository hotelBookingRepository;
-
-  private final HotelBookingHelper hotelBookingHelper = new HotelBookingHelper();
+    @Autowired
+    private HotelBookingHelper hotelBookingHelper;
 
   /**
    * Metodo que crea una reserva de hotel a partir del DTO de entrada recibido.

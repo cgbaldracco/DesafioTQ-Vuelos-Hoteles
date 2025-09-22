@@ -2,10 +2,8 @@ package com.accenture.tq.desafiotqvueloshoteles.dto.booking;
 
 import com.accenture.tq.desafiotqvueloshoteles.dto.general.PeopleDTO;
 import com.accenture.tq.desafiotqvueloshoteles.dto.general.StatusCodeDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +11,7 @@ import java.util.List;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class HotelBookingDTOOutput {
  
 	private Date dateFrom;
